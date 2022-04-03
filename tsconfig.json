@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "sourceMap": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "$components": ["src/components"],
+      "$containers": ["src/containers"],
+      "$constants": ["src/constants"],
+      "$rests": ["src/rests"],
+      "$utils": ["src/utils"],
+      "$operations": ["src/operations"],
+      "$models": ["src/models"]
+    }
+  }
+}

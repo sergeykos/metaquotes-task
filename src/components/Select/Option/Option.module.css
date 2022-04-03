@@ -1,0 +1,9 @@
+.option {
+  cursor: pointer;
+  display: grid;
+  height: 40px;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 24px;
+  color: gray;
+}
