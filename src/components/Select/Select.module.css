@@ -16,6 +16,8 @@
 .options {
   position: absolute;
   width: 180px;
+  max-height: 50vh;
+  overflow-y: scroll;
   border: solid 2px gray;
   box-sizing: border-box;
   background-color: #fff;

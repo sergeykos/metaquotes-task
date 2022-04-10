@@ -6,7 +6,11 @@ interface IProps {
 }
 
 export const Button: React.FC<IProps> = (props) => {
-  const { children } = props;
+  const { children, onClick } = props;
 
-  return <button className={classes.button}>{children}</button>;
+  return (
+    <button className={classes.button} onClick={onClick}>
+      {children}
+    </button>
+  );
 };

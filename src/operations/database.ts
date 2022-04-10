@@ -18,29 +18,31 @@ const saveFetchToDB = (
     fetchPromise.then((result) => {
       const addPromises: Promise<boolean>[] = [];
 
-      result.forEach((item) => {
-        const trnGet = db.transaction(dbTableName, "readonly");
+      if (!db.objectStoreNames.contains(dbTableName)) {
+        result.forEach((item) => {
+          const trnGet = db.transaction(dbTableName, "readonly");
 
-        const trnRequest = trnGet.objectStore(dbTableName).get(item.t);
+          const trnRequest = trnGet.objectStore(dbTableName).get(item.t);
 
-        addPromises.push(
-          new Promise((resolve) => {
-            trnGet.oncomplete = () => {
-              if (!trnRequest.result) {
-                const trnAdd = db.transaction(dbTableName, "readwrite");
+          addPromises.push(
+            new Promise((resolve) => {
+              trnGet.oncomplete = () => {
+                if (!trnRequest.result) {
+                  const trnAdd = db.transaction(dbTableName, "readwrite");
 
-                trnAdd.objectStore(dbTableName).add(item);
+                  trnAdd.objectStore(dbTableName).add(item);
 
-                trnAdd.oncomplete = () => {
+                  trnAdd.oncomplete = () => {
+                    resolve(true);
+                  };
+                } else {
                   resolve(true);
-                };
-              } else {
-                resolve(true);
-              }
-            };
-          })
-        );
-      });
+                }
+              };
+            })
+          );
+        });
+      }
 
       Promise.all(addPromises).then(() => {
         const trnGetAll = db.transaction(dbTableName, "readonly");

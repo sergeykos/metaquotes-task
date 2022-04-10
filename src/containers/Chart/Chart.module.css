@@ -1,8 +1,5 @@
 .chart {
-  display: grid;
   width: 600px;
   height: 400px;
-  align-items: center;
-  justify-content: center;
   border: solid 2px gray;
 }
