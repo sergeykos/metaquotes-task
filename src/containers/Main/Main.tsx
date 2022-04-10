@@ -87,12 +87,12 @@ export const Main = () => {
   useEffect(() => {
     initApp().then(
       (result) => {
-        if (result[0]?.result) {
+        if (!isEmpty(result[0]?.result)) {
           savePrecipitation(result[0]?.result);
         }
 
-        if (result[1]?.result) {
-          saveTemperature(result[0]?.result);
+        if (!isEmpty(result[1]?.result)) {
+          saveTemperature(result[1]?.result);
         }
 
         onChangeIsInit();
